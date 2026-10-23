@@ -1,0 +1,15 @@
+{
+  "releases": [
+    {
+      "platform": "web",
+      "arch": "all",
+      "version": "0.1.0",
+      "minimumSupportedVersion": "0.1.0",
+      "downloadUrl": "https://www.sinxysai.site/app/",
+      "size": 0,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "signature": "web-static",
+      "releaseNotes": "浏览器内本地图片工具。"
+    }
+  ]
+}

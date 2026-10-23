@@ -1,0 +1,12 @@
+{
+  "name": "OmniConvert",
+  "short_name": "OmniConvert",
+  "lang": "zh-CN",
+  "start_url": "/app/",
+  "scope": "/app/",
+  "display": "standalone",
+  "background_color": "#f6f8fc",
+  "theme_color": "#175cd3",
+  "description": "本地优先的文件和图片工具。",
+  "icons": []
+}

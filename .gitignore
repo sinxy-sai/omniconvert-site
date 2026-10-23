@@ -1,6 +1,7 @@
 node_modules/
 dist/
 .astro/
+.pytest_cache/
 __pycache__/
 *.py[cod]
 .env

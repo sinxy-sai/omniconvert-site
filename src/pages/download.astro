@@ -1,0 +1,5 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { releases } from '../lib/releases';
+---
+<Layout title="下载"><div class="container"><div class="eyebrow">Downloads</div><h1>选择你的平台</h1><p class="lede">版本信息、架构和发布状态集中展示。正式安装包发布后，这里会显示文件大小和 SHA-256。</p><div class="section grid">{releases.map((release) => <article class="panel"><div class="kicker">{release.platform}</div><h2>{release.version}</h2><p><strong>架构：</strong>{release.arch}</p><p class="muted">{release.note}</p><a class={`button ${release.status === 'available' ? 'primary' : ''}`} href={release.href}>{release.status === 'available' ? '打开' : '查看状态'}</a></article>)}</div><div class="section callout"><strong>iOS：</strong>第一阶段使用 Web/PWA，不提供公开原生 IPA 安装。</div></div></Layout>

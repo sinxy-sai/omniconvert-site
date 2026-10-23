@@ -1,0 +1,5 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { releases } from '../lib/releases';
+---
+<Layout title="版本"><div class="container"><div class="eyebrow">Releases</div><h1>版本记录</h1><p class="lede">每个正式版本会关联不可变的构建产物、校验信息和发布说明。</p><div class="section table-wrap"><table><thead><tr><th>平台</th><th>架构</th><th>版本</th><th>状态</th><th>说明</th></tr></thead><tbody>{releases.map((release) => <tr><td>{release.platform}</td><td>{release.arch}</td><td>{release.version}</td><td>{release.status}</td><td>{release.note}</td></tr>)}</tbody></table></div></div></Layout>

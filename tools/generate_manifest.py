@@ -1,6 +1,9 @@
 import argparse, json
 from pathlib import Path
-from .manifest import generate_manifest
+try:
+    from .manifest import generate_manifest
+except ImportError:
+    from manifest import generate_manifest
 
 parser = argparse.ArgumentParser()
 parser.add_argument('input')

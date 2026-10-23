@@ -1,6 +1,9 @@
 import argparse, hashlib, json
 from pathlib import Path
-from .manifest import load_manifest
+try:
+    from .manifest import load_manifest
+except ImportError:
+    from manifest import load_manifest
 
 parser = argparse.ArgumentParser()
 parser.add_argument('manifest')

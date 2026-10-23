@@ -1,0 +1,52 @@
+name: Site CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: python -m pytest tests -q
+      - run: npm run build
+      - run: python tools/verify_artifacts.py dist/releases/latest.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: omniconvert-site-${{ github.sha }}
+          path: dist
+          if-no-files-found: error
+
+  publish:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      attestations: write
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: omniconvert-site-${{ github.sha }}
+          path: dist
+      - uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: dist/**
